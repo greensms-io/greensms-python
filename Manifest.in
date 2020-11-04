@@ -1,0 +1,4 @@
+include README.md
+include docs/*.txt
+recursive-include twilio/conf *
+include LICENSE
