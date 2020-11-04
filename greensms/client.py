@@ -1,18 +1,19 @@
 import os
 from greensms.utils.version import get_version
+from greensms.http.rest import HttpClient
 
 class GreenSMS(object):
   """ Client for accessing the GreenSMS API"""
 
-  def __init__(self, user=None, password=None, token=None, version=None, camelCaseResponse=False, useTokenForRequests=False):
+  def __init__(self, user=None, password=None, token=None, version=None, camel_case_response=False, use_token_for_requests=False):
     """ Initialize the client
 
     :param str user: Username. Required when AuthToken is not passed
     :param str password: Password. Request when AuthToken is not passed
     :param str token: AuthToken. Required when Username/Password not passed
     :param str version: API version to be used
-    :param bool useTokenForRequests: Create Auth Token after login and use for subsequent requests
-    :param bool camelCaseResponse: Convert all response keys to camelCase
+    :param bool use_token_for_requests: Create Auth Token after login and use for subsequent requests
+    :param bool camel_case_response: Convert all response keys to camelCase
 
     :returns: Twilio Client
     :rtype: greensms.GreenSMS
@@ -25,8 +26,8 @@ class GreenSMS(object):
     self.user = user or environment.get('GREENSMS_USER')
     self.password = password or environment.get('GREENSMS_PASS')
     self.version = version
-    self.useCamelCase = camelCaseResponse if type(camelCaseResponse) == type(True) else False
-    self.useTokenForRequests = useTokenForRequests if type(camelCaseResponse) == type(True) else False
+    self.use_camel_case = camel_case_response if type(camel_case_response) == type(True) else False
+    self.use_token_for_requests = use_token_for_requests if type(use_token_for_requests) == type(True) else False
 
     if self.token is not None:
       self.user = None
@@ -36,9 +37,26 @@ class GreenSMS(object):
       raise Exception('Either User/Pass or Auth Token is required!')
 
     sharedOptions = {
-      'useTokenForRequests': self.useTokenForRequests,
-      'version': get_version(version)
+      'use_token_for_requests': self.use_token_for_requests,
+      'version': get_version(version),
+      'rest_client': self._http_client(use_camel_case=camel_case_response)
     }
+
+    print(sharedOptions)
 
   def test(self, str):
     print(self.user, str)
+
+  def _http_client(self, **kwargs):
+
+    params = {}
+
+    if not self.token and self.user:
+      params['user'] = self.user
+      params['pass'] = self.password
+
+    for key, value in kwargs.items():
+      params[key] = value
+
+    rest_client = HttpClient(params)
+    return rest_client
