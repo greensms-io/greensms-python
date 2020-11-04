@@ -49,14 +49,20 @@ class GreenSMS(object):
 
   def _http_client(self, **kwargs):
 
-    params = {}
+    default_params = {}
 
     if not self.token and self.user:
-      params['user'] = self.user
-      params['pass'] = self.password
+      default_params['user'] = self.user
+      default_params['pass'] = self.password
+
+    http_args = {
+      'default_params': default_params,
+      'default_data': {},
+      'token': self.token
+    }
 
     for key, value in kwargs.items():
-      params[key] = value
+      http_args[key] = value
 
-    rest_client = HttpClient(params)
+    rest_client = HttpClient(http_args)
     return rest_client
