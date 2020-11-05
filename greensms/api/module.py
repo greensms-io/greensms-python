@@ -1,7 +1,11 @@
 from greensms.utils.validator import validate
 
 class Module:
+  """
+    Module Instance Class
 
+    Call that inits with default args and has an API function to call the Rest API along with Validation
+  """
   def __init__(self, rest_client, module_schema, **kwargs):
     self.rest_client = rest_client
     self.module_schema = module_schema

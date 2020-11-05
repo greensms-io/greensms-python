@@ -5,6 +5,11 @@ from greensms.utils.attr_dict import AttrDict
 
 
 class ModuleLoader:
+  """ Generic Module Loader Class
+
+    Allows us with an ability to set module.version.function based on a dictionary
+  """
+
   def __init__(self):
     self.module_map = AttrDict({})
 
@@ -14,6 +19,7 @@ class ModuleLoader:
 
     current_version = shared_options['version']
 
+    # Layered approach for Module > Version > Function
     for module_name, module_info in MODULES.items():
 
       if module_name not in self.module_map:
@@ -41,22 +47,27 @@ class ModuleLoader:
 
           api_url = build_url(shared_options['base_url'], url_args)
 
-          self.module_map[module_name][version][function_name] = module_api(shared_options=shared_options, api_url=api_url, definition=definition, module_schema=module_schema)
+          # Call a Higher Order Function that returns an Module instance function
+          self.module_map[module_name][version][function_name] = self.module_api(shared_options=shared_options, api_url=api_url, definition=definition, module_schema=module_schema)
 
           if version == current_version:
             self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
     return self.module_map
 
 
-def module_api(**kwargs):
+  def module_api(self, **kwargs):
+    """ Module API Function
 
-  rest_client = kwargs['shared_options']['rest_client']
-  module_schema = kwargs['module_schema']
+      Higher Order Function that returns a Function, to be invoked by user later
+    """
 
-  request_params = {
-    'url': kwargs['api_url'],
-    'method': kwargs['definition']['method'],
-  }
+    rest_client = kwargs['shared_options']['rest_client']
+    module_schema = kwargs['module_schema']
 
-  module = Module(rest_client, module_schema, **request_params)
-  return module.api_func
+    request_params = {
+      'url': kwargs['api_url'],
+      'method': kwargs['definition']['method'],
+    }
+
+    module = Module(rest_client, module_schema, **request_params)
+    return module.api_func
