@@ -10,7 +10,6 @@ class HttpClient:
         self.__dict__[attribute] = opts[attribute]
 
   def request(self, **kwargs):
-    print('Request')
 
     if 'method' not in kwargs:
       raise Exception('Http Method is required')
@@ -52,7 +51,7 @@ class HttpClient:
 
     response = response.json()
 
-    if response['error']:
+    if 'error' in response:
       response = RestError(response)
 
-    return result
+    return response
