@@ -26,7 +26,7 @@ class ModuleLoader:
         self.module_map[module_name] = AttrDict({})
 
       module_versions = module_info['versions']
-      module_schema = module_info['schema'] if 'schema' in module_info else None
+      module_schema = None
 
       if 'load_static' in filters and 'static' in module_info and filters['load_static'] == True and module_info['static'] == True:
           continue
@@ -39,6 +39,10 @@ class ModuleLoader:
 
           if function_name not in self.module_map[module_name][version]:
             self.module_map[module_name][version][function_name] = AttrDict({})
+
+          module_schema = None
+          if 'schema' in module_info and version in module_info['schema'] and function_name in module_info['schema'][version]:
+            module_schema = module_info['schema'][version][function_name]
 
           url_args = []
           if 'static' not in module_info or module_info['static'] == False:
