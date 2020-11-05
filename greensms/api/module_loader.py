@@ -1,7 +1,9 @@
 from greensms.api.modules import MODULES
+from greensms.api.module import Module
 from greensms.utils.url import build_url
 from greensms.utils.validator import validate
 from greensms.utils.attr_dict import AttrDict
+
 
 class ModuleLoader:
   def __init__(self):
@@ -39,29 +41,23 @@ class ModuleLoader:
           url_args.append(function_name)
 
           api_url = build_url(shared_options['base_url'], url_args)
-          self.module_map[module_name][function_name] = lambda shared_options, api_url, definition, module_schema: self.module_api()
+
+          self.module_map[module_name][version][function_name] = module_api(shared_options=shared_options, api_url=api_url, definition=definition, module_schema=module_schema)
 
           if version == current_version:
             self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
-
     return self.module_map
 
 
-  def module_api(**kwargs):
+def module_api(**kwargs):
 
-    rest_client = kwargs['shared_options']['rest_client']
+  rest_client = kwargs['shared_options']['rest_client']
+  module_schema = kwargs['module_schema']
 
-    request_params = {
-      'url': kwargs['api_url'],
-      'method': kwargs['definition']['method'],
-    }
+  request_params = {
+    'url': kwargs['api_url'],
+    'method': kwargs['definition']['method'],
+  }
 
-    if 'module_schema' in kwargs and kwargs['module_schema'] is not None:
-      errors = validate(module_schema, kwargs['params'])
-      if errors:
-        return errors
-
-    request_params['params'] = kwargs['params'] if 'params' in kwargs else {}
-
-    response = rest_client.request(**request_params)
-    return response
+  module = Module(rest_client, module_schema, **request_params)
+  return module.api_func
