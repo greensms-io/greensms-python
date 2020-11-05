@@ -1,7 +1,6 @@
 from greensms.http.error import RestError
 from cerberus import Validator
 
-
 def validate(schema, data):
   error_result = None
   validator = Validator(schema)
