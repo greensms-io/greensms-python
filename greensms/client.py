@@ -2,6 +2,7 @@ import os
 from greensms.utils.version import get_version
 from greensms.utils.url import base_url, build_url
 from greensms.http.rest import HttpClient
+from greensms.api.module_loader import ModuleLoader
 
 class GreenSMS(object):
   """ Client for accessing the GreenSMS API"""
@@ -44,14 +45,12 @@ class GreenSMS(object):
       'base_url': base_url()
     }
 
-    bal_url = build_url(base_url(), 'account', 'balance')
+    self.add_modules(shared_options)
 
-    print(shared_options)
 
-    shared_options['rest_client'].request(method='GET', url=bal_url)
-
-  def test(self, str):
-    pass
+  def add_modules(self, shared_options):
+    module_loader = ModuleLoader()
+    modules = module_loader.register_modules(shared_options)
 
   def _http_client(self, **kwargs):
 
@@ -64,7 +63,7 @@ class GreenSMS(object):
     http_args = {
       'default_params': default_params,
       'default_data': {},
-      'token': self.token
+      'token': self.token,
     }
 
     for key, value in kwargs.items():
