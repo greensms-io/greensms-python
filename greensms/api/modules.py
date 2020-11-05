@@ -1,4 +1,4 @@
-from greensms.schema import VALIDATION_SCHEMA
+from greensms.api.schema import VALIDATION_SCHEMA
 
 MODULES = {
   'account': {
@@ -28,7 +28,7 @@ MODULES = {
           'args': ['params'],
           'method': 'POST',
         },
-        'status: {
+        'status': {
           'args': ['params'],
           'method': 'GET',
         },

@@ -1,5 +1,5 @@
 import requests
-from error import RestError
+from greensms.http.error import RestError
 
 class HttpClient:
 
