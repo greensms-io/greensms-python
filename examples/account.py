@@ -1,8 +1,6 @@
-import settings
-from greensms.client import GreenSMS
+from default import client
 
 def get_balance():
-  client = GreenSMS()
   res = client.account.balance()
   print(res)
 
