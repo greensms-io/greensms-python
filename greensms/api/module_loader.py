@@ -1,10 +1,11 @@
 from greensms.api.modules import MODULES
 from greensms.utils.url import build_url
 from greensms.utils.validator import validate
+from greensms.utils.attr_dict import AttrDict
 
 class ModuleLoader:
   def __init__(self):
-    self.module_map = {}
+    self.module_map = AttrDict({})
 
   def register_modules(self, shared_options, filters = {}):
     if not filters:
@@ -15,7 +16,7 @@ class ModuleLoader:
     for module_name, module_info in MODULES.items():
 
       if module_name not in self.module_map:
-        self.module_map[module_name] = {}
+        self.module_map[module_name] = AttrDict({})
 
       module_versions = module_info['versions']
       module_schema = module_info['schema'] if 'schema' in module_info else None
@@ -25,12 +26,12 @@ class ModuleLoader:
 
       for version, version_functions in module_versions.items():
         if version not in self.module_map[module_name]:
-          self.module_map[module_name][version] = {}
+          self.module_map[module_name][version] = AttrDict({})
 
         for function_name, definition in version_functions.items():
 
           if function_name not in self.module_map[module_name][version]:
-            self.module_map[module_name][version][function_name] = {}
+            self.module_map[module_name][version][function_name] = AttrDict({})
 
           url_args = []
           if 'static' not in module_info or module_info['static'] == False:
@@ -38,9 +39,7 @@ class ModuleLoader:
           url_args.append(function_name)
 
           api_url = build_url(shared_options['base_url'], url_args)
-
-          print(api_url)
-          # self.module_map[module_name][function_name] = lambda shared_options, api_url, definition, module_schema: self.module_api()
+          self.module_map[module_name][function_name] = lambda shared_options, api_url, definition, module_schema: self.module_api()
 
           if version == current_version:
             self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
