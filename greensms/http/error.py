@@ -1,6 +1,10 @@
 from builtins import super
 
 class RestError(Exception):
+  """ Custom Error Implementation
+
+    Custom Error Class extending Exception with additional fields like error type
+  """
 
   def __init__(self, error):
 

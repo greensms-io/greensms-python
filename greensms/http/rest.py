@@ -61,4 +61,7 @@ class HttpClient:
     if 'error' in response:
       response = RestError(response)
 
+    if self.use_camel_case == True:
+      response = humps.camelize(response)
+
     return response
