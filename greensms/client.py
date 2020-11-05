@@ -1,5 +1,6 @@
 import os
 from greensms.utils.version import get_version
+from greensms.utils.url import base_url, build_url
 from greensms.http.rest import HttpClient
 
 class GreenSMS(object):
@@ -36,16 +37,21 @@ class GreenSMS(object):
     if self.token is not None and (self.user is None or self.password is None):
       raise Exception('Either User/Pass or Auth Token is required!')
 
-    sharedOptions = {
+    shared_options = {
       'use_token_for_requests': self.use_token_for_requests,
       'version': get_version(version),
-      'rest_client': self._http_client(use_camel_case=camel_case_response)
+      'rest_client': self._http_client(use_camel_case=camel_case_response),
+      'base_url': base_url()
     }
 
-    print(sharedOptions)
+    bal_url = build_url(base_url(), 'account', 'balance')
+
+    print(shared_options)
+
+    shared_options['rest_client'].request(method='GET', url=bal_url)
 
   def test(self, str):
-    print(self.user, str)
+    pass
 
   def _http_client(self, **kwargs):
 

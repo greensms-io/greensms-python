@@ -1,5 +1,4 @@
-URL_PROTOCOL = 'https'
-BASE_URL = 'api3.greensms.ru'
+BASE_URL = 'https://api3.greensms.ru'
 VERSIONS = {
   'v1': 'v1',
 }
