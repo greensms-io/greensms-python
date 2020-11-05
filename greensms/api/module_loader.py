@@ -13,6 +13,10 @@ class ModuleLoader:
     current_version = shared_options['version']
 
     for module_name, module_info in MODULES.items():
+
+      if module_name not in self.module_map:
+        self.module_map[module_name] = {}
+
       module_versions = module_info['versions']
       module_schema = module_info['schema']
 
@@ -20,5 +24,16 @@ class ModuleLoader:
           continue
 
       for version, version_functions in module_versions.items():
-        print(module_name)
-        print(version_functions)
+        if version not in self.module_map[module_name]:
+          self.module_map[module_name][version] = {}
+
+
+        for function_name, function_definition in version_functions.items():
+          if function_name not in self.module_map[module_name][version]:
+            self.module_map[module_name][version][function_name]
+
+
+          if version == current_version:
+            self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
+
+    return self.module_map
