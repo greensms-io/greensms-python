@@ -1,9 +1,16 @@
 import requests
+import humps
 from greensms.http.error import RestError
 
 class HttpClient:
 
   def __init__(self, opts):
+
+    self.token = None
+    self.default_data = {}
+    self.default_params = {}
+    self.use_camel_case = False
+
     attributes = ['token', 'default_data', 'default_params', 'use_camel_case']
     for attribute in attributes:
       if attribute in opts:
