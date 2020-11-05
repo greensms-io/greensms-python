@@ -1,3 +1,5 @@
+from greensms.utils.validator import validate
+
 class Module:
 
   def __init__(self, rest_client, module_schema, **kwargs):

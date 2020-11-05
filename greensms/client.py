@@ -51,6 +51,8 @@ class GreenSMS(object):
   def add_modules(self, shared_options):
     module_loader = ModuleLoader()
     modules = module_loader.register_modules(shared_options)
+    for module, value in modules.items():
+      setattr(self, module, value)
 
   def _http_client(self, **kwargs):
 

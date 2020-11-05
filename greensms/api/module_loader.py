@@ -1,7 +1,6 @@
 from greensms.api.modules import MODULES
 from greensms.api.module import Module
 from greensms.utils.url import build_url
-from greensms.utils.validator import validate
 from greensms.utils.attr_dict import AttrDict
 
 
