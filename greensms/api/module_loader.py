@@ -18,7 +18,7 @@ class ModuleLoader:
         self.module_map[module_name] = {}
 
       module_versions = module_info['versions']
-      module_schema = module_info['schema']
+      module_schema = module_info['schema'] if 'schema' in module_info else None
 
       if 'load_static' in filters and 'static' in module_info and filters['load_static'] == True and module_info['static'] == True:
           continue
@@ -27,13 +27,42 @@ class ModuleLoader:
         if version not in self.module_map[module_name]:
           self.module_map[module_name][version] = {}
 
+        for function_name, definition in version_functions.items():
 
-        for function_name, function_definition in version_functions.items():
           if function_name not in self.module_map[module_name][version]:
-            self.module_map[module_name][version][function_name]
+            self.module_map[module_name][version][function_name] = {}
 
+          url_args = []
+          if 'static' not in module_info or module_info['static'] == False:
+            url_args.append(module_name)
+          url_args.append(function_name)
+
+          api_url = build_url(shared_options['base_url'], url_args)
+
+          print(api_url)
+          # self.module_map[module_name][function_name] = lambda shared_options, api_url, definition, module_schema: self.module_api()
 
           if version == current_version:
             self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
 
     return self.module_map
+
+
+  def module_api(**kwargs):
+
+    rest_client = kwargs['shared_options']['rest_client']
+
+    request_params = {
+      'url': kwargs['api_url'],
+      'method': kwargs['definition']['method'],
+    }
+
+    if 'module_schema' in kwargs and kwargs['module_schema'] is not None:
+      errors = validate(module_schema, kwargs['params'])
+      if errors:
+        return errors
+
+    request_params['params'] = kwargs['params'] if 'params' in kwargs else {}
+
+    response = rest_client.request(**request_params)
+    return response

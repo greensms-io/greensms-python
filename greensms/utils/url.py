@@ -8,7 +8,7 @@ from greensms.constants import BASE_URL
 def base_url():
   return BASE_URL
 
-def build_url(base_url, *args):
+def build_url(base_url, args):
   if not base_url:
     raise Exception('Base URL cannot be empty!')
 
