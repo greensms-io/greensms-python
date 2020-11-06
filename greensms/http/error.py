@@ -19,7 +19,7 @@ class RestError(Exception):
     self.error = error_message
     self.message = error_message
 
-    super().__init__(self.message)
+    # super().__init__(self.message)
 
     error_type = self._get_error_type(self.code)
     self.error_type = error_type

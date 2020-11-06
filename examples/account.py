@@ -1,20 +1,20 @@
 from default import client
 
-def get_balance():
+def account_balance():
   res = client.account.balance()
   print(res)
 
-def get_token():
+def account_token():
   res = client.account.token(expire=100)
   print(res)
 
-def get_tariff():
+def account_tariff():
   res = client.account.tariff()
   print(res)
 
 if __name__ == '__main__':
-  get_balance()
+  account_balance()
 
-  get_token()
+  account_token()
 
-  get_tariff()
+  account_tariff()

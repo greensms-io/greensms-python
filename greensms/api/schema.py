@@ -16,17 +16,20 @@ VALIDATION_SCHEMA = {
           'type': 'string',
           'minlength': 11,
           'maxlength': 14,
-          'required': True
+          'required': True,
+          'regex': '^\d+'
         }
       },
       'status': {
         'id': {
           'type': 'string',
-          'length': 36,
+          'minlength': 36,
+          'maxlength': 36,
           'required': True
         },
         'extended': {
-          'type': 'bool'
+          'type': 'boolean',
+          'required': False
         }
       }
     }
