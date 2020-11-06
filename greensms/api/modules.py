@@ -58,4 +58,19 @@ MODULES = {
       },
     },
   },
+  'voice': {
+    'schema': VALIDATION_SCHEMA['voice'],
+    'versions': {
+      'v1': {
+        'send': {
+          'args': ['params'],
+          'method': 'POST',
+        },
+        'status': {
+          'args': ['params'],
+          'method': 'GET',
+        },
+      }
+    }
+  },
 }
