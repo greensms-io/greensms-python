@@ -82,5 +82,46 @@ VALIDATION_SCHEMA = {
         }
       }
     }
-  })
+  }),
+  'sms': deep_merge(common_schema,
+    {
+      'v1': {
+        'send': {
+          'txt': {
+            'type': 'string',
+            'minlength': 1,
+            'required': True
+          },
+          'from': {
+            'type': 'string',
+          },
+          'tag': {
+            'type': 'string',
+          },
+          'hidden': {
+            'type': 'string',
+          }
+        }
+      }
+    }),
+  'viber': deep_merge(common_schema,
+    {
+      'v1': {
+        'send': {
+          'txt': {
+            'type': 'string',
+            'minlength': 1,
+            'maxlength': 5,
+            'regex': '^\d+',
+          },
+          'from': {
+            'type': 'string',
+          },
+          'cascade': {
+            'type': 'string',
+            'allowed': ['sms', 'voice']
+          }
+        }
+      }
+    }),
 }

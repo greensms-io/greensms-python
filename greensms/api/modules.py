@@ -103,4 +103,34 @@ MODULES = {
       }
     }
   },
+  'sms': {
+    'schema': VALIDATION_SCHEMA['sms'],
+    'versions': {
+      'v1': {
+        'send': {
+          'args': ['params'],
+          'method': 'POST',
+        },
+        'status': {
+          'args': ['params'],
+          'method': 'GET',
+        },
+      }
+    }
+  },
+  'viber': {
+    'schema': VALIDATION_SCHEMA['viber'],
+    'versions': {
+      'v1': {
+        'send': {
+          'args': ['params'],
+          'method': 'POST',
+        },
+        'status': {
+          'args': ['params'],
+          'method': 'GET',
+        },
+      }
+    }
+  },
 }
