@@ -68,6 +68,19 @@ VALIDATION_SCHEMA = {
           }
         }
       }
-    })
-
+    }),
+  'pay': deep_merge(common_schema, {
+    'v1': {
+      'send': {
+        'amount': {
+          'type': 'number',
+          'min': 1,
+          'required': True
+        },
+        'tag': {
+          'type': 'string'
+        }
+      }
+    }
+  })
 }

@@ -73,4 +73,34 @@ MODULES = {
       }
     }
   },
+  'pay': {
+    'schema': VALIDATION_SCHEMA['pay'],
+    'versions': {
+      'v1': {
+        'send': {
+          'args': ['params'],
+          'method': 'POST',
+        },
+        'status': {
+          'args': ['params'],
+          'method': 'GET',
+        },
+      }
+    }
+  },
+  'hlr': {
+    'schema': VALIDATION_SCHEMA['hlr'],
+    'versions': {
+      'v1': {
+        'send': {
+          'args': ['params'],
+          'method': 'POST',
+        },
+        'status': {
+          'args': ['params'],
+          'method': 'GET',
+        },
+      }
+    }
+  },
 }
