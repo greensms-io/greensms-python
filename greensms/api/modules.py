@@ -34,5 +34,28 @@ MODULES = {
         },
       }
     }
-  }
+  },
+  'whois': {
+    'schema': VALIDATION_SCHEMA['whois'],
+    'versions': {
+      'v1': {
+        'lookup': {
+          'args': ['params'],
+          'method': 'GET'
+        }
+      }
+    }
+  },
+  'general': {
+    'schema': VALIDATION_SCHEMA['general'],
+    'static': True,
+    'versions': {
+      'v1': {
+        'status': {
+          'args': None,
+          'method': 'GET',
+        },
+      },
+    },
+  },
 }

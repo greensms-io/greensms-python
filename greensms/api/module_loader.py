@@ -56,6 +56,11 @@ class ModuleLoader:
 
           if version == current_version:
             self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
+
+          if 'static' in module_info and module_info['static'] == True:
+            self.module_map[function_name] = self.module_map[module_name][version][function_name]
+            del self.module_map[module_name]
+
     return self.module_map
 
 

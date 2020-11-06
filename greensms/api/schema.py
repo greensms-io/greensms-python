@@ -1,3 +1,18 @@
+to_schema = {
+  'type': 'string',
+  'minlength': 11,
+  'maxlength': 14,
+  'required': True,
+  'regex': '^\d+'
+}
+
+id_schema = {
+  'type': 'string',
+  'minlength': 36,
+  'maxlength': 36,
+  'required': True
+}
+
 VALIDATION_SCHEMA = {
   'account': {
     'v1': {
@@ -12,26 +27,23 @@ VALIDATION_SCHEMA = {
   'call': {
     'v1': {
       'send': {
-        'to': {
-          'type': 'string',
-          'minlength': 11,
-          'maxlength': 14,
-          'required': True,
-          'regex': '^\d+'
-        }
+        'to': to_schema
       },
       'status': {
-        'id': {
-          'type': 'string',
-          'minlength': 36,
-          'maxlength': 36,
-          'required': True
-        },
+        'id': id_schema,
         'extended': {
           'type': 'boolean',
           'required': False
         }
       }
     }
-  }
+  },
+  'whois': {
+    'v1': {
+      'lookup': {
+        'to': to_schema
+      }
+    },
+  },
+  'general': {}
 }
