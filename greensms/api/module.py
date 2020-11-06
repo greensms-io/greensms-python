@@ -23,9 +23,11 @@ class Module:
 
     api_params={}
     for key, value in kwargs.items():
-      self.api_params[key] = value
+      api_params[key] = value
 
-    request_params = {**self.params, **api_params}
+    request_params = self.params.copy()
+    request_params['params'] = api_params
+
     response = self.rest_client.request(**request_params)
 
     return response

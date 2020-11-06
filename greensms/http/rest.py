@@ -42,7 +42,7 @@ class HttpClient:
         params[key] = value
 
     if 'params' in kwargs:
-      for key, value in kwargs['params']:
+      for key, value in kwargs['params'].items():
         params[key] = value
 
     data = {}
@@ -51,7 +51,7 @@ class HttpClient:
         data[key] = value
 
     if 'data' in kwargs:
-      for key, value in kwargs['data']:
+      for key, value in kwargs['data'].items():
         data[key] = value
 
     response = requests.request(method=method, url=url, headers=headers, params=params)
