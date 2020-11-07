@@ -2,7 +2,7 @@ import unittest
 from tests.default import client
 from tests.utils import random_phone
 
-class TestCallMethods(unittest.TestCase):
+class TestGeneralMethods(unittest.TestCase):
 
   def test_lookup(self):
     response = client.whois.lookup(to='79260000000')
