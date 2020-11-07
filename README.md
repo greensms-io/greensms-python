@@ -1,4 +1,4 @@
-# greensms-node
+# greensms-python
 
 ## Documentation
 
@@ -24,7 +24,7 @@ Check out these [code examples](examples) to get up and running quickly.
 
 from greensms.client import GreenSMS
 
-// Register at my.greeensms.ru first
+# Register at my.greeensms.ru first
 client = GreenSMS(user='test', password='test')
 
 client.sms.send(to='71231234567', txt='Message to deliver')
@@ -42,7 +42,7 @@ print(response.request_id)
 
 from greensms.client import GreenSMS
 
-// Register at my.greeensms.ru first
+# Register at my.greeensms.ru first
 client = GreenSMS(token='yourtoken')
 
 client.account.balance()
