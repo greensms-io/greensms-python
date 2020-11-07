@@ -110,9 +110,8 @@ VALIDATION_SCHEMA = {
         'send': {
           'txt': {
             'type': 'string',
-            'minlength': 1,
-            'maxlength': 5,
-            'regex': '^\d+',
+            'required': True,
+            'minlength': 1
           },
           'from': {
             'type': 'string',
