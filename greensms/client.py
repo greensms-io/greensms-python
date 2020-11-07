@@ -35,7 +35,7 @@ class GreenSMS(object):
       self.user = None
       self.password = None
 
-    if self.token is not None and (self.user is None or self.password is None):
+    if self.token is None and (self.user is None or self.password is None):
       raise Exception('Either User/Pass or Auth Token is required!')
 
     shared_options = {
