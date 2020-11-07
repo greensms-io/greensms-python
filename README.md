@@ -84,13 +84,15 @@ If you want to familiarize yourself with the project, you can start by [forking 
 After cloning the repository, install the dependencies by running the following command in the directory of your cloned repository:
 
 ```bash
-npm install
+pip install -r requirements.txt
 ```
 
-You can run the existing tests to see if everything is okay by executing:
+In addition to this, we recommend running the setup with [virtualenv](https://virtualenv.pypa.io/), for creating an isolated Python development environment.
+
+GreenSMS has all the unit tests defined under **tests** folder with `_test.py` extension. Although it uses Python Unittest, we recommended that you test with [py.test](http://pytest.org/). PyTest supports Python unit tests out of the box and is faster for running the tests in bulk.
 
 ```bash
-npm test
+pytest tests
 ```
 
 [apidocs]: https://api.greensms.ru/
