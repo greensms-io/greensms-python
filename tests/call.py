@@ -6,7 +6,8 @@ class TestCallMethods(unittest.TestCase):
 
   def test_send(self):
     response = client.call.send(to=random_phone())
-    self.assertIn('request_id', response)
+    keys_set = set(response.keys())
+    self.assertTrue({'request_id', 'code'}.issubset(keys_set))
 
   def test_mandatory_to(self):
     self.assertRaises(Exception, client.call.send())
