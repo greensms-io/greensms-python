@@ -1,7 +1,7 @@
 from default import client
 
 def hlr_send():
-  res = client.hlr.send(to='919987409698')
+  res = client.hlr.send(to='919987409698', txt='1920')
   print(res)
 
 def hlr_status():
