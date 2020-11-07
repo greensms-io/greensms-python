@@ -17,7 +17,9 @@ setup(name='greensms',
       install_requires=[
         'requests',
         'six',
-        'twine'
+        'twine',
+        'cerberus',
+        'pyhumps'
       ],
       extras_require={
         ':python_version<"3.0"': [
