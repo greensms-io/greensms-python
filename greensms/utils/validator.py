@@ -3,7 +3,7 @@ from cerberus import Validator
 
 def validate(schema, data):
   error_result = None
-  validator = Validator(schema)
+  validator = Validator(schema, allow_unknown=True)
 
   if validator.validate(data):
     return error_result
