@@ -95,4 +95,15 @@ GreenSMS has all the unit tests defined under **tests** folder with `_test.py` e
 pytest tests
 ```
 
+We also support [tox](https://tox.readthedocs.io/) for automate env/interpretor wise testing. Support versions are added to tox.ini. Dependencies added in root requirements.txt are supposed to be added to `tests/requirements.txt` as well.
+
+You can install and run tox for the project with the following commands.
+
+```bash
+pip install tox  # Install tox
+
+tox # Run test
+
+```
+
 [apidocs]: https://api.greensms.ru/

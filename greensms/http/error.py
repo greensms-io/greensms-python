@@ -1,4 +1,7 @@
-from builtins import super
+try:
+  from builtins import super
+except:
+  pass
 
 class RestError(Exception):
   """ Custom Error Implementation
