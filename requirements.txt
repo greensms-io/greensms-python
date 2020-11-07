@@ -1,0 +1,6 @@
+requests>=2.0.0
+six
+twine
+keyring>=15.1
+cerberus
+pyhumps
