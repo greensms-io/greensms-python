@@ -1,4 +1,5 @@
 import unittest
+import time
 from tests.default import client
 from greensms.client import GreenSMS
 from tests.utils import random_phone
@@ -16,6 +17,14 @@ class TestTokenMethods(unittest.TestCase):
 
   def test_without_token(self):
     self.assertRaises(Exception, GreenSMS())
+
+  def test_token_expiry(self):
+    token_response = client.account.token(expire=5)
+    invalid_token_client = GreenSMS(token=token_response['access_token'])
+    time.sleep(5)
+    response = invalid_token_client.account.balance()
+    self.assertEqual(response.error, 'Authorization declined')
+
 
 if __name__ == '__main__':
   unittest.main()
