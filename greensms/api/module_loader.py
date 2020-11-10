@@ -28,7 +28,14 @@ class ModuleLoader:
             module_versions = module_info['versions']
             module_schema = None
 
-            if 'load_static' in filters and 'static' in module_info and filters['load_static'] is True and module_info['static'] is True:
+            is_static_module = (
+              'load_static' in filters
+              and 'static' in module_info
+              and filters['load_static'] is True
+              and module_info['static'] is True
+            )
+
+            if is_static_module:
                 continue
 
             for version, version_functions in module_versions.items():
@@ -42,7 +49,12 @@ class ModuleLoader:
                         })
 
                     module_schema = None
-                    if 'schema' in module_info and version in module_info['schema'] and function_name in module_info['schema'][version]:
+                    scheme_exists = (
+                      'schema' in module_info
+                      and version in module_info['schema']
+                      and function_name in module_info['schema'][version]
+                    )
+                    if scheme_exists:
                         module_schema = module_info['schema'][version][function_name]
 
                     url_args = []
