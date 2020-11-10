@@ -3,7 +3,6 @@ from greensms.utils.version import get_version
 from greensms.utils.url import base_url
 from greensms.http.rest import HttpClient
 from greensms.api.module_loader import ModuleLoader
-import types
 
 
 class GreenSMS(object):
@@ -31,9 +30,9 @@ class GreenSMS(object):
         self.password = password or environment.get('GREENSMS_PASS')
         self.version = version
         self.use_camel_case = camel_case_response if isinstance(
-            camel_case_response, types.BooleanType) else False
+            camel_case_response, bool) else False
         self.use_token_for_requests = use_token_for_requests if isinstance(
-            use_token_for_requests, types.BooleanType) else False
+            use_token_for_requests, bool) else False
 
         if self.token is not None:
             self.user = None
