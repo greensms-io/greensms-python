@@ -13,7 +13,7 @@ class ModuleLoader:
     def __init__(self):
         self.module_map = AttrDict({})
 
-    def register_modules(self, shared_options, filters={}):
+    def register_modules(self, shared_options, filters={}):  # noqa: C901
         if not filters:
             filters = {}
 
@@ -28,7 +28,7 @@ class ModuleLoader:
             module_versions = module_info['versions']
             module_schema = None
 
-            if 'load_static' in filters and 'static' in module_info and filters['load_static'] == True and module_info['static'] == True:
+            if 'load_static' in filters and 'static' in module_info and filters['load_static'] is True and module_info['static'] is True:
                 continue
 
             for version, version_functions in module_versions.items():
@@ -46,7 +46,7 @@ class ModuleLoader:
                         module_schema = module_info['schema'][version][function_name]
 
                     url_args = []
-                    if 'static' not in module_info or module_info['static'] == False:
+                    if 'static' not in module_info or module_info['static'] is False:
                         url_args.append(module_name)
                     url_args.append(function_name)
 
@@ -59,7 +59,7 @@ class ModuleLoader:
                     if version == current_version:
                         self.module_map[module_name][function_name] = self.module_map[module_name][version][function_name]
 
-                    if 'static' in module_info and module_info['static'] == True:
+                    if 'static' in module_info and module_info['static'] is True:
                         self.module_map[function_name] = self.module_map[module_name][version][function_name]
                         del self.module_map[module_name]
 
