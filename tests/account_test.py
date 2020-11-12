@@ -24,14 +24,14 @@ class TestAccountMethods(unittest.TestCase):
     def test_unauthorized_access(self):
         try:
             test_client = GreenSMS(user='username', password='password')
-            response = test_client.account.balance()
+            test_client.account.balance()
         except Exception as e:
             self.assertEqual(e.error, 'Authorization declined')
 
     def test_insufficient_funds(self):
         try:
             test_client = GreenSMS(user='test_block_user', password='183456')
-            response = test_client.sms.send(
+            test_client.sms.send(
                 to=random_phone(), txt='Test Message')
         except Exception as e:
             self.assertEqual(e.error, 'Insufficient funds')
