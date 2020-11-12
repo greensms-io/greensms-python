@@ -63,7 +63,7 @@ class HttpClient:
         response = response.json()
 
         if 'error' in response:
-            response = RestError(response)
+            raise RestError(response)
             # TODO: Decide to raise an Exception or respond with the error json
         else:
             response = AttrDict(response)
