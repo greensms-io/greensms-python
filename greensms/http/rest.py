@@ -1,6 +1,7 @@
 import requests
 import humps
 from greensms.http.error import RestError
+from greensms.utils.attr_dict import AttrDict
 
 
 class HttpClient:
@@ -68,4 +69,5 @@ class HttpClient:
         if self.use_camel_case is True:
             response = humps.camelize(response)
 
+        response = AttrDict(response)
         return response
