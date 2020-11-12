@@ -20,8 +20,10 @@ class TestTokenMethods(unittest.TestCase):
         token_response = client.account.token(expire=5)
         invalid_token_client = GreenSMS(token=token_response['access_token'])
         time.sleep(5)
-        response = invalid_token_client.account.balance()
-        self.assertEqual(response.error, 'Authorization declined')
+        try:
+            invalid_token_client.account.balance()
+        except Exception as e:
+            self.assertEqual(e.error, 'Authorization declined')
 
 
 if __name__ == '__main__':

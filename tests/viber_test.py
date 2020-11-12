@@ -16,7 +16,10 @@ class TestViberMethods(unittest.TestCase):
         self.assertIn('request_id', response)
 
     def test_mandatory_to(self):
-        self.assertRaises(Exception, client.viber.send())
+        try:
+            client.viber.send()
+        except Exception as e:
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.viber.status(

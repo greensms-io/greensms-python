@@ -9,7 +9,7 @@ def validate(schema, data):
     if validator.validate(data):
         return error_result
     else:
-        error_result = RestError({
+        raise RestError({
             'code': 1,
             'error': 'Validation Error',
             'params': validator.errors

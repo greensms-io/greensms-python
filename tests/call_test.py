@@ -11,7 +11,10 @@ class TestCallMethods(unittest.TestCase):
         self.assertTrue({'request_id', 'code'}.issubset(keys_set))
 
     def test_mandatory_to(self):
-        self.assertRaises(Exception, client.call.send())
+        try:
+            client.call.send()
+        except Exception as e:
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.call.status(

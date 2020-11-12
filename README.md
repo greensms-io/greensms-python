@@ -27,8 +27,8 @@ from greensms.client import GreenSMS
 # Register at my.greeensms.ru first
 client = GreenSMS(user='test', password='test')
 
-client.sms.send(to='71231234567', txt='Message to deliver')
-print(response.request_id)
+response = client.sms.send(to='71231234567', txt='Message to deliver')
+print(response.request_id) # or print(response['request_id'])
 
 ```
 
@@ -45,7 +45,7 @@ from greensms.client import GreenSMS
 # Register at my.greeensms.ru first
 client = GreenSMS(token='yourtoken')
 
-client.account.balance()
+response = client.account.balance()
 print(response.balance)
 
 ```
@@ -60,6 +60,7 @@ print(response.balance)
 - All methods support named \*\*kwargs
 - Each API Function is available as `MODULE.FUNCTION()`
 - Parameters for each API can be referred from [here][apidocs]
+- Response keys can be used as dictionary keys `response['key']` or properties `response.key`
 - Response keys by default are available in `snake_case`. If you want to use `camelCase`, then pass `use_camel_case=true`, in the constructor
 
 ## Handling Exceptions
