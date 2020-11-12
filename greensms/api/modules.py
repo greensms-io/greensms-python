@@ -133,4 +133,19 @@ MODULES = {
             }
         }
     },
+    'social': {
+        'schema': VALIDATION_SCHEMA['social'],
+        'versions': {
+            'v1': {
+                'send': {
+                    'args': ['params'],
+                    'method': 'POST',
+                },
+                'status': {
+                    'args': ['params'],
+                    'method': 'GET',
+                },
+            }
+        }
+    },
 }

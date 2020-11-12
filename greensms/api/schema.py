@@ -123,4 +123,25 @@ VALIDATION_SCHEMA = {
                                 }
                             }
                         }),
+    'social': deep_merge(common_schema,
+                      {
+                          'v1': {
+                              'send': {
+                                  'txt': {
+                                      'type': 'string',
+                                      'minlength': 1,
+                                      'required': True
+                                  },
+                                  'from': {
+                                      'type': 'string',
+                                  },
+                                  'tag': {
+                                      'type': 'string',
+                                  },
+                                  'hidden': {
+                                      'type': 'string',
+                                  }
+                              }
+                          }
+                      }),
 }
