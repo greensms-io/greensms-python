@@ -18,7 +18,10 @@ class TestSocialMethods(unittest.TestCase):
         self.assertIn('request_id', response)
 
     def test_mandatory_to(self):
-        self.assertRaises(Exception, client.social.send())
+        try:
+            client.social.send()
+        except Exception as e:
+          self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.social.status(id='caf3efb1-8aca-4387-9ed0-e667d315c5c9')

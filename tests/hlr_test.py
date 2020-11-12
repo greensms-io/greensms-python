@@ -10,7 +10,10 @@ class TestHlrMethods(unittest.TestCase):
         self.assertIn('request_id', response)
 
     def test_mandatory_to(self):
-        self.assertRaises(Exception, client.hlr.send())
+        try:
+            client.hlr.send()
+        except Exception as e:
+          self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.hlr.status(

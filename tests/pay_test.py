@@ -10,7 +10,11 @@ class TestPayMethods(unittest.TestCase):
         self.assertIn('request_id', response)
 
     def test_mandatory_to(self):
-        self.assertRaises(Exception, client.pay.send())
+        try:
+            client.pay.send()
+        except Exception as e:
+          self.assertEqual(e.error, 'Validation Error')
+
 
     def test_status(self):
         response = client.pay.status(id='60f231d9-16ec-4313-842e-6e6853063482')
