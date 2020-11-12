@@ -29,10 +29,10 @@ class ModuleLoader:
             module_schema = None
 
             is_static_module = (
-              'load_static' in filters
-              and 'static' in module_info
-              and filters['load_static'] is True
-              and module_info['static'] is True
+                'load_static' in filters
+                and 'static' in module_info
+                and filters['load_static'] is True
+                and module_info['static'] is True
             )
 
             if is_static_module:
@@ -50,9 +50,9 @@ class ModuleLoader:
 
                     module_schema = None
                     scheme_exists = (
-                      'schema' in module_info
-                      and version in module_info['schema']
-                      and function_name in module_info['schema'][version]
+                        'schema' in module_info
+                        and version in module_info['schema']
+                        and function_name in module_info['schema'][version]
                     )
                     if scheme_exists:
                         module_schema = module_info['schema'][version][function_name]

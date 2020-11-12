@@ -13,8 +13,7 @@ class TestPayMethods(unittest.TestCase):
         try:
             client.pay.send()
         except Exception as e:
-          self.assertEqual(e.error, 'Validation Error')
-
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.pay.status(id='60f231d9-16ec-4313-842e-6e6853063482')

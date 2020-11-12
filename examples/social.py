@@ -3,11 +3,11 @@ from default import client
 
 def social_send():
     dict_params = {
-      'to': '71231234567',
-      'txt': 'Test Message Hampshire',
-      'from': 'PyTest',
-      'tag': 'PyTest',
-      'hidden': 'Hampshire'
+        'to': '71231234567',
+        'txt': 'Test Message Hampshire',
+        'from': 'PyTest',
+        'tag': 'PyTest',
+        'hidden': 'Hampshire'
     }
 
     res = client.social.send(**dict_params)

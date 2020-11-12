@@ -13,7 +13,7 @@ class TestVoiceMethods(unittest.TestCase):
         try:
             client.voice.send()
         except Exception as e:
-          self.assertEqual(e.error, 'Validation Error')
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.voice.status(

@@ -19,7 +19,7 @@ class TestViberMethods(unittest.TestCase):
         try:
             client.viber.send()
         except Exception as e:
-          self.assertEqual(e.error, 'Validation Error')
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.viber.status(

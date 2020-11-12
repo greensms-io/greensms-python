@@ -21,10 +21,11 @@ class TestSocialMethods(unittest.TestCase):
         try:
             client.social.send()
         except Exception as e:
-          self.assertEqual(e.error, 'Validation Error')
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
-        response = client.social.status(id='caf3efb1-8aca-4387-9ed0-e667d315c5c9')
+        response = client.social.status(
+            id='caf3efb1-8aca-4387-9ed0-e667d315c5c9')
         self.assertIn('status', response)
 
 

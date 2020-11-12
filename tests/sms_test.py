@@ -21,7 +21,7 @@ class TestSmsMethods(unittest.TestCase):
         try:
             client.sms.send()
         except Exception as e:
-          self.assertEqual(e.error, 'Validation Error')
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.sms.status(id='dc2bac6d-f375-4e19-9a02-ef0148991635')

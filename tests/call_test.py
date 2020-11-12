@@ -14,7 +14,7 @@ class TestCallMethods(unittest.TestCase):
         try:
             client.call.send()
         except Exception as e:
-          self.assertEqual(e.error, 'Validation Error')
+            self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         response = client.call.status(
