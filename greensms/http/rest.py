@@ -65,9 +65,10 @@ class HttpClient:
         if 'error' in response:
             response = RestError(response)
             # TODO: Decide to raise an Exception or respond with the error json
+        else:
+            response = AttrDict(response)
 
         if self.use_camel_case is True:
             response = humps.camelize(response)
 
-        response = AttrDict(response)
         return response
