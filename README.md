@@ -66,7 +66,9 @@ print(response.balance)
 
 ## Handling Exceptions
 
-- TODO
+- Exceptions for all APIs are thrown with `RestError` class. It extends the default Python Exception class.
+- Each error, will have `error`, `code`, `message`, `errorType` fields.
+- In case of _Validation Error_, additional params are available to show field-wise rule failures. Can be accessed by `e.params` property on the error object
 
 ## Getting help
 
