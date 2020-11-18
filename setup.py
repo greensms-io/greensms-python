@@ -11,7 +11,7 @@ setup(name='greensms',
       description='GREENSMS API: SMS, Viber, Voce, Call, HLR, Pay',
       url='https://github.com/greensms-ru/greensms-python',
       author='GreenSMS',
-      author_email='',
+      author_email='support@greensms.ru',
       license='MIT',
       packages=find_packages(exclude=['tests', 'tests*']),
       install_requires=[
