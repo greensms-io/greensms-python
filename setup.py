@@ -7,7 +7,7 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='greensms',
-      version='0.1',
+      version='1.2.0',
       description='GREENSMS API: SMS, Viber, Voce, Call, HLR, Pay',
       url='https://github.com/greensms-ru/greensms-python',
       author='GreenSMS',
@@ -42,7 +42,7 @@ setup(name='greensms',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
       include_package_data=True,
-      keywords=['greensms', 'sms', 'rest', 'api', 'viber'],
+      keywords=['greensms', 'sms', 'sms-api', 'call-for-code', 'rest', 'api', 'viber'],
       long_description=long_description,
       long_description_content_type='text/markdown'
       )
