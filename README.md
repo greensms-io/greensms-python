@@ -1,4 +1,5 @@
 # greensms-python
+[![Run tests](https://github.com/greensms-ru/greensms-python/workflows/Python%20package/badge.svg)](https://github.com/greensms-ru/greensms-python/actions?query=workflow%3A%22Python+package%22)
 
 ## Documentation
 
