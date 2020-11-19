@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest
+          pip install flake8 pytest coverage
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with flake8
         run: |
@@ -36,5 +36,10 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+      - name: Coverage
+        run: |
+          coverage run --source=greensms setup.py test
+        if: matrix.python-version == 3.8
       - name: Coveralls Python
         uses: AndreMiras/coveralls-python-action@v20200413
+        if: matrix.python-version == 3.8
