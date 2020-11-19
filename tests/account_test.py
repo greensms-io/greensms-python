@@ -11,7 +11,7 @@ class TestAccountMethods(unittest.TestCase):
         self.assertIn('balance', response)
 
     def test_token(self):
-        response = client.account.token()
+        response = client.account.token(expire=10)
         self.assertIn('access_token', response)
 
     def test_tarrif(self):
