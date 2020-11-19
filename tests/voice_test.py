@@ -8,6 +8,7 @@ class TestVoiceMethods(unittest.TestCase):
     def test_send(self):
         response = client.voice.send(to=random_phone(), txt='1200', lang='en')
         self.assertIn('request_id', response)
+        self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
@@ -16,8 +17,9 @@ class TestVoiceMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
+        request_id = self.__class__.request_id
         response = client.voice.status(
-            id='41f23094-deda-4cab-ac9c-3ab4f2fee9e6', extended=True)
+            id=request_id, extended=True)
         self.assertIn('status', response)
 
 

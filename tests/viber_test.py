@@ -14,6 +14,7 @@ class TestViberMethods(unittest.TestCase):
         }
         response = client.viber.send(**dict_params)
         self.assertIn('request_id', response)
+        self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
@@ -22,8 +23,9 @@ class TestViberMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
+        request_id = self.__class__.request_id
         response = client.viber.status(
-            id='0b18fab4-0c5d-4a8b-8ee4-057a59596c7d', extended=True)
+            id=request_id, extended=True)
         self.assertIn('status', response)
 
 

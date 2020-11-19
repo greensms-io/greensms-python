@@ -8,6 +8,7 @@ class TestPayMethods(unittest.TestCase):
     def test_send(self):
         response = client.pay.send(to=random_phone(), amount=10, tag='PyTest')
         self.assertIn('request_id', response)
+        self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
@@ -16,7 +17,8 @@ class TestPayMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
-        response = client.pay.status(id='60f231d9-16ec-4313-842e-6e6853063482')
+        request_id = self.__class__.request_id
+        response = client.pay.status(id=request_id, extended=True)
         self.assertIn('status', response)
 
 
