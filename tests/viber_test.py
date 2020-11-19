@@ -1,7 +1,7 @@
 import unittest
 from tests.default import client
 from tests.utils import random_phone
-
+import time
 
 class TestViberMethods(unittest.TestCase):
 
@@ -23,6 +23,7 @@ class TestViberMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
+        time.sleep(2)
         request_id = self.__class__.request_id
         response = client.viber.status(
             id=request_id, extended=True)
