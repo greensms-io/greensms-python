@@ -3,6 +3,7 @@ import time
 from tests.default import client
 from greensms.client import GreenSMS
 
+
 class TestTokenMethods(unittest.TestCase):
 
     def test_balance(self):

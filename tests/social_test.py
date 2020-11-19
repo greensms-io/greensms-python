@@ -3,6 +3,7 @@ from tests.default import client
 from tests.utils import random_phone
 import time
 
+
 class TestSocialMethods(unittest.TestCase):
 
     def test_send(self):
