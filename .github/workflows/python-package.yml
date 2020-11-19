@@ -36,8 +36,5 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-      - name: Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          coveralls
+      - name: Coveralls Python
+        uses: AndreMiras/coveralls-python-action@v20200413
