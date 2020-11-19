@@ -1,5 +1,9 @@
 # greensms-python
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/greensms-ru/greensms-python)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/greensms)
 [![Run tests](https://github.com/greensms-ru/greensms-python/workflows/Python%20package/badge.svg)](https://github.com/greensms-ru/greensms-python/actions?query=workflow%3A%22Python+package%22)
+![Coveralls github](https://img.shields.io/coveralls/github/greensms-ru/greensms-python)
+
 
 ## Documentation
 
