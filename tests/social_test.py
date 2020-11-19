@@ -1,7 +1,7 @@
 import unittest
 from tests.default import client
 from tests.utils import random_phone
-
+import time
 
 class TestSocialMethods(unittest.TestCase):
 
@@ -16,6 +16,7 @@ class TestSocialMethods(unittest.TestCase):
 
         response = client.social.send(**dict_params)
         self.assertIn('request_id', response)
+        self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
@@ -24,8 +25,10 @@ class TestSocialMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
+        time.sleep(2)
+        request_id = self.__class__.request_id
         response = client.social.status(
-            id='caf3efb1-8aca-4387-9ed0-e667d315c5c9')
+            id=request_id, extended=True)
         self.assertIn('status', response)
 
 

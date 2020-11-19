@@ -1,6 +1,7 @@
 import unittest
 from tests.default import client
 from tests.utils import random_phone
+import time
 
 
 class TestHlrMethods(unittest.TestCase):
@@ -8,6 +9,7 @@ class TestHlrMethods(unittest.TestCase):
     def test_send(self):
         response = client.hlr.send(to=random_phone(79260000111, 79260999999))
         self.assertIn('request_id', response)
+        self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
@@ -16,8 +18,10 @@ class TestHlrMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
+        time.sleep(2)
+        request_id = self.__class__.request_id
         response = client.hlr.status(
-            id='70d296f5-ac52-403d-a27b-24829c2faebc', to=random_phone())
+            id=request_id, to=random_phone())
         self.assertIn('status', response)
 
 

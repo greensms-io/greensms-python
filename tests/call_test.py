@@ -1,6 +1,7 @@
 import unittest
 from tests.default import client
 from tests.utils import random_phone
+import time
 
 
 class TestCallMethods(unittest.TestCase):
@@ -9,6 +10,7 @@ class TestCallMethods(unittest.TestCase):
         response = client.call.send(to=random_phone())
         keys_set = set(response.keys())
         self.assertTrue({'request_id', 'code'}.issubset(keys_set))
+        self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
@@ -17,8 +19,10 @@ class TestCallMethods(unittest.TestCase):
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
+        time.sleep(2)
+        request_id = self.__class__.request_id
         response = client.call.status(
-            id='1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55', extended=True)
+            id=request_id, extended=True)
         self.assertIn('status', response)
 
 
