@@ -1,4 +1,5 @@
 from greensms.utils.dict import deep_merge
+from greensms.utils.cascade_validator import cascade_validator
 
 to_schema = {
     'type': 'string',
@@ -41,7 +42,36 @@ VALIDATION_SCHEMA = {
             }
         }
     },
-    'call': common_schema,
+    'call':  deep_merge(common_schema,
+                        {
+                            'v1': {
+                                'send': {
+                                    'voice': {
+                                        'type': 'string',
+                                        'allowed': ['true', 'false']
+                                    },
+                                    'language': {
+                                        'type': 'string',
+                                        'allowed': ['ru', 'en']
+                                    },
+                                    'tag': {
+                                        'type': 'string',
+                                        'maxLength': 36,
+                                    },
+                                },
+                                'receive': {
+                                    'to': to_schema,
+                                    'toll_free': {
+                                        'type': 'string',
+                                        'allowed': ['true', 'false']
+                                    },
+                                    'tag': {
+                                        'type': 'string',
+                                        'maxLength': 36,
+                                    },
+                                }
+                            }
+                        }),,
     'hlr': common_schema,
     'whois': {
         'v1': {
@@ -62,10 +92,14 @@ VALIDATION_SCHEMA = {
                                         'regex': "^[0-9]+",
                                         'required': True
                                     },
-                                    'lang': {
+                                    'language': {
                                         'type': 'string',
                                         'allowed': ['ru', 'en']
-                                    }
+                                    },
+                                    'tag': {
+                                        'type': 'string',
+                                        'maxLength': 36,
+                                    },
                                 }
                             }
                         }),
@@ -84,26 +118,30 @@ VALIDATION_SCHEMA = {
         }
     }),
     'sms': deep_merge(common_schema,
-                      {
-                          'v1': {
-                              'send': {
-                                  'txt': {
-                                      'type': 'string',
-                                      'minlength': 1,
-                                      'required': True
-                                  },
-                                  'from': {
-                                      'type': 'string',
-                                  },
-                                  'tag': {
-                                      'type': 'string',
-                                  },
-                                  'hidden': {
-                                      'type': 'string',
-                                  }
-                              }
-                          }
-                      }),
+                        {
+                            'v1': {
+                                'send': {
+                                    'txt': {
+                                        'type': 'string',
+                                        'required': True,
+                                        'minlength': 1,
+                                        'maxLength': 918
+                                    },
+                                    'from': {
+                                        'type': 'string',
+                                        'maxLength': 11,
+                                    },
+                                    'tag': {
+                                        'type': 'string',
+                                        'maxLength': 36,
+                                    },
+                                    'hidden': {
+                                        'type': 'string',
+                                        'maxLength': 918
+                                    }
+                                }
+                            }
+                        }),
     'viber': deep_merge(common_schema,
                         {
                             'v1': {
