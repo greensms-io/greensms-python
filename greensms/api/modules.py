@@ -32,6 +32,10 @@ MODULES = {
                     'args': ['params'],
                     'method': 'GET',
                 },
+                'receive': {
+                    'args': ['params'],
+                    'method': 'POST',
+                },
             }
         }
     },
@@ -140,6 +144,40 @@ MODULES = {
                 'send': {
                     'args': ['params'],
                     'method': 'POST',
+                },
+                'status': {
+                    'args': ['params'],
+                    'method': 'GET',
+                },
+            }
+        }
+    },
+    'vk': {
+        'schema': VALIDATION_SCHEMA['vk'],
+        'versions': {
+            'v1': {
+                'send': {
+                    'args': ['params'],
+                    'method': 'POST',
+                },
+                'status': {
+                    'args': ['params'],
+                    'method': 'GET',
+                },
+            }
+        }
+    },
+    'whatsapp': {
+        'schema': VALIDATION_SCHEMA['whatsapp'],
+        'versions': {
+            'v1': {
+                'send': {
+                    'args': ['params'],
+                    'method': 'POST',
+                },
+                'webhook': {
+                    'args': ['params'],
+                    'method': 'GET',
                 },
                 'status': {
                     'args': ['params'],
