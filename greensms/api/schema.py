@@ -111,8 +111,14 @@ VALIDATION_SCHEMA = {
                     'min': 1,
                     'required': True
                 },
+                'card': {
+                    'type': 'string',
+                    'minLength': 11,
+                    'maxLength': 14
+                },
                 'tag': {
-                    'type': 'string'
+                    'type': 'string',
+                    'maxLength': 36,
                 }
             }
         }
@@ -142,44 +148,99 @@ VALIDATION_SCHEMA = {
                                 }
                             }
                         }),
-    'viber': deep_merge(common_schema,
-                        {
-                            'v1': {
-                                'send': {
-                                    'txt': {
-                                        'type': 'string',
-                                        'required': True,
-                                        'minlength': 1
-                                    },
-                                    'from': {
-                                        'type': 'string',
-                                    },
-                                    'cascade': {
-                                        'type': 'string',
-                                        'allowed': ['sms', 'voice']
-                                    }
-                                }
-                            }
-                        }),
-    'social': deep_merge(common_schema,
-                         {
-                             'v1': {
-                                 'send': {
-                                     'txt': {
-                                         'type': 'string',
-                                         'minlength': 1,
-                                         'required': True
-                                     },
-                                     'from': {
-                                         'type': 'string',
-                                     },
-                                     'tag': {
-                                         'type': 'string',
-                                     },
-                                     'hidden': {
-                                         'type': 'string',
-                                     }
-                                 }
-                             }
-                         }),
+    'viber': deep_merge(common_schema, {
+        'v1': {
+            'send': {
+                'txt': {
+                    'type': 'string',
+                    'required': True,
+                    'minlength': 1,
+                    'maxLength': 14,
+                },
+                'txt': {
+                    'type': 'string',
+                },
+                'from': {
+                    'type': 'string',
+                    'maxLength': 11,
+                    'minlength': 1
+                },
+                'cascade': {
+                    'type': 'string',
+                    'allowed': ['sms', 'voice']
+                }
+            }
+        }
+    }),
+    'social': deep_merge(common_schema, {
+        'v1': {
+            'send': {
+                'txt': {
+                    'type': 'string',
+                    'minlength': 1,
+                    'required': True
+                },
+                'from': {
+                    'type': 'string',
+                },
+                'tag': {
+                    'type': 'string',
+                },
+                'hidden': {
+                    'type': 'string',
+                }
+            }
+        }
+    }),
+    'vk': deep_merge(common_schema, {
+        'v1': {
+            'send': {
+                'txt': {
+                    'type': 'string',
+                    'minlength': 1,
+                    'maxLength': 2048,
+                    'required': True
+                },
+                'from': {
+                    'type': 'string',
+                    'minlength': 1,
+                    'maxLength': 11,
+                },
+                'tag': {
+                    'type': 'string',
+                    'maxLength': 36
+                },
+                'cascade': {
+                    'validator': cascade_validator
+                }
+            }
+        }
+    }),
+    'whatsapp': deep_merge(common_schema, {
+        'v1': {
+            'send': {
+                'txt': {
+                    'type': 'string',
+                    'minlength': 1,
+                    'maxLength': 10000,
+                    'required': True
+                },
+                'file': {
+                    'type': 'string',
+                    'maxLength': 256,
+                },
+                'tag': {
+                    'type': 'string',
+                    'maxLength': 36,
+                },
+            },
+            'webhook': {
+                'url': {
+                    'required': True,
+                    'minLength': 11,
+                    'maxLength': 256
+                }
+            }
+        }
+    }),
 }
