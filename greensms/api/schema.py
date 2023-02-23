@@ -71,7 +71,7 @@ VALIDATION_SCHEMA = {
                                     },
                                 }
                             }
-                        }),,
+                        }), ,
     'hlr': common_schema,
     'whois': {
         'v1': {
@@ -124,30 +124,30 @@ VALIDATION_SCHEMA = {
         }
     }),
     'sms': deep_merge(common_schema,
-                        {
-                            'v1': {
-                                'send': {
-                                    'txt': {
-                                        'type': 'string',
-                                        'required': True,
-                                        'minlength': 1,
-                                        'maxLength': 918
-                                    },
-                                    'from': {
-                                        'type': 'string',
-                                        'maxLength': 11,
-                                    },
-                                    'tag': {
-                                        'type': 'string',
-                                        'maxLength': 36,
-                                    },
-                                    'hidden': {
-                                        'type': 'string',
-                                        'maxLength': 918
-                                    }
-                                }
-                            }
-                        }),
+                      {
+                          'v1': {
+                              'send': {
+                                  'txt': {
+                                      'type': 'string',
+                                      'required': True,
+                                      'minlength': 1,
+                                      'maxLength': 918
+                                  },
+                                  'from': {
+                                      'type': 'string',
+                                      'maxLength': 11,
+                                  },
+                                  'tag': {
+                                      'type': 'string',
+                                      'maxLength': 36,
+                                  },
+                                  'hidden': {
+                                      'type': 'string',
+                                      'maxLength': 918
+                                  }
+                              }
+                          }
+                      }),
     'viber': deep_merge(common_schema, {
         'v1': {
             'send': {

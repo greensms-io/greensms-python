@@ -45,7 +45,8 @@ setup(name='greensms',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
       include_package_data=True,
-      keywords=['greensms', 'sms', 'sms-api', 'call-for-code', 'rest', 'api', 'viber', 'whatsapp'],
+      keywords=['greensms', 'sms', 'sms-api', 'call-for-code',
+                'rest', 'api', 'viber', 'whatsapp'],
       long_description=long_description,
       long_description_content_type='text/markdown'
       )
