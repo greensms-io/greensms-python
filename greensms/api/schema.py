@@ -71,7 +71,7 @@ VALIDATION_SCHEMA = {
                                     },
                                 }
                             }
-                        }), ,
+                        }),
     'hlr': common_schema,
     'whois': {
         'v1': {
