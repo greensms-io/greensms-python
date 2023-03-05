@@ -3,4 +3,4 @@ six
 twine
 keyring>=15.1
 cerberus
-pyhumps>=3.0.2
+pyhumps
