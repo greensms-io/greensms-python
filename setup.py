@@ -24,9 +24,11 @@ setup(name='greensms',
       extras_require={
           ':python_version<"3.0"': [
               "requests[security] >= 2.0.0",
+              "pyhumps == 3.0.2",
           ],
           ':python_version>="3.0"': [
-              "requests >= 2.0.0"
+              "requests >= 2.0.0",
+              "pyhumps >= 3.5.0"
           ],
       },
       classifiers=[
