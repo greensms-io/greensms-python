@@ -12,6 +12,12 @@ class TestCallMethods(unittest.TestCase):
         self.assertTrue({'request_id', 'code'}.issubset(keys_set))
         self.__class__.request_id = response.request_id
 
+    def test_receive(self):
+        response = client.call.receive(to=random_phone(), tag="aaeb96d6-cb0e-46f2-8d09-2cd5c9ea421c")
+        keys_set = set(response.keys())
+        self.assertTrue({'request_id', 'number'}.issubset(keys_set))
+        self.__class__.request_id = response.request_id
+
     def test_mandatory_to(self):
         try:
             client.call.send()
