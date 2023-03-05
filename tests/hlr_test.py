@@ -7,7 +7,7 @@ import time
 class TestHlrMethods(unittest.TestCase):
 
     def test_send(self):
-        response = client.hlr.send(to=random_phone(79260000111, 79260999999))
+        response = client.hlr.send(to=random_phone(79150000000, 79150999999))
         self.assertIn('request_id', response)
         self.__class__.request_id = response.request_id
 

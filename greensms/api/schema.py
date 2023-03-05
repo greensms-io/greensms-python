@@ -10,7 +10,7 @@ to_schema = {
 }
 
 id_schema = {
-    'type': 'string',
+    'type': ['string', 'integer'],
     'minlength': 36,
     'maxlength': 36,
     'required': True
@@ -56,7 +56,7 @@ VALIDATION_SCHEMA = {
                                     },
                                     'tag': {
                                         'type': 'string',
-                                        'maxLength': 36,
+                                        'maxlength': 36,
                                     },
                                 },
                                 'receive': {
@@ -67,7 +67,7 @@ VALIDATION_SCHEMA = {
                                     },
                                     'tag': {
                                         'type': 'string',
-                                        'maxLength': 36,
+                                        'maxlength': 36,
                                     },
                                 }
                             }
@@ -98,7 +98,7 @@ VALIDATION_SCHEMA = {
                                     },
                                     'tag': {
                                         'type': 'string',
-                                        'maxLength': 36,
+                                        'maxlength': 36,
                                     },
                                 }
                             }
@@ -113,12 +113,12 @@ VALIDATION_SCHEMA = {
                 },
                 'card': {
                     'type': 'string',
-                    'minLength': 11,
-                    'maxLength': 14
+                    'minlength': 11,
+                    'maxlength': 14
                 },
                 'tag': {
                     'type': 'string',
-                    'maxLength': 36,
+                    'maxlength': 36,
                 }
             }
         }
@@ -131,19 +131,19 @@ VALIDATION_SCHEMA = {
                                       'type': 'string',
                                       'required': True,
                                       'minlength': 1,
-                                      'maxLength': 918
+                                      'maxlength': 918
                                   },
                                   'from': {
                                       'type': 'string',
-                                      'maxLength': 11,
+                                      'maxlength': 11,
                                   },
                                   'tag': {
                                       'type': 'string',
-                                      'maxLength': 36,
+                                      'maxlength': 36,
                                   },
                                   'hidden': {
                                       'type': 'string',
-                                      'maxLength': 918
+                                      'maxlength': 918
                                   }
                               }
                           }
@@ -155,14 +155,14 @@ VALIDATION_SCHEMA = {
                     'type': 'string',
                     'required': True,
                     'minlength': 1,
-                    'maxLength': 14,
+                    'maxlength': 14,
                 },
                 'txt': {
                     'type': 'string',
                 },
                 'from': {
                     'type': 'string',
-                    'maxLength': 11,
+                    'maxlength': 11,
                     'minlength': 1
                 },
                 'cascade': {
@@ -198,17 +198,17 @@ VALIDATION_SCHEMA = {
                 'txt': {
                     'type': 'string',
                     'minlength': 1,
-                    'maxLength': 2048,
+                    'maxlength': 2048,
                     'required': True
                 },
                 'from': {
                     'type': 'string',
                     'minlength': 1,
-                    'maxLength': 11,
+                    'maxlength': 11,
                 },
                 'tag': {
                     'type': 'string',
-                    'maxLength': 36
+                    'maxlength': 36
                 },
                 'cascade': {
                     'validator': cascade_validator
@@ -222,23 +222,23 @@ VALIDATION_SCHEMA = {
                 'txt': {
                     'type': 'string',
                     'minlength': 1,
-                    'maxLength': 10000,
+                    'maxlength': 10000,
                     'required': True
                 },
                 'file': {
                     'type': 'string',
-                    'maxLength': 256,
+                    'maxlength': 256,
                 },
                 'tag': {
                     'type': 'string',
-                    'maxLength': 36,
+                    'maxlength': 36,
                 },
             },
             'webhook': {
                 'url': {
                     'required': True,
-                    'minLength': 11,
-                    'maxLength': 256
+                    'minlength': 11,
+                    'maxlength': 256
                 }
             }
         }
