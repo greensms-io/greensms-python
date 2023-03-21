@@ -2,7 +2,9 @@ import requests
 import humps
 from greensms.http.error import RestError
 from greensms.utils.attr_dict import AttrDict
+from greensms.constants import SDK_VERSION, SDK_NAME
 
+HEADER_USER_AGENT = 'User-Agent'
 
 class HttpClient:
 
@@ -12,6 +14,7 @@ class HttpClient:
         self.default_data = {}
         self.default_params = {}
         self.use_camel_case = False
+        self.sdk_version_header = SDK_NAME + " " + SDK_VERSION
 
         attributes = ['token', 'default_data',
                       'default_params', 'use_camel_case']
@@ -56,6 +59,8 @@ class HttpClient:
         if 'data' in kwargs:
             for key, value in kwargs['data'].items():
                 data[key] = value
+
+        headers[HEADER_USER_AGENT] = self.sdk_version_header
 
         response = requests.request(
             method=method, url=url, headers=headers, params=params)

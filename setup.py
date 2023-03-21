@@ -7,8 +7,8 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='greensms',
-      version='1.6.0',
-      description='GREENSMS API: SMS, Viber, Voce, Call, HLR, Pay',
+      version='2.0.0',
+      description='GREENSMS API: SMS, Call, Voice, VK, WhatsApp, Viber, HLR, Pay',
       url='https://github.com/greensms-ru/greensms-python',
       author='GreenSMS',
       author_email='support@greensms.ru',
@@ -24,9 +24,11 @@ setup(name='greensms',
       extras_require={
           ':python_version<"3.0"': [
               "requests[security] >= 2.0.0",
+              "pyhumps == 3.0.2",
           ],
           ':python_version>="3.0"': [
-              "requests >= 2.0.0"
+              "requests >= 2.0.0",
+              "pyhumps >= 3.5.0"
           ],
       },
       classifiers=[
@@ -39,10 +41,14 @@ setup(name='greensms',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
           'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.9',
+          'Programming Language :: Python :: 3.10',
+          'Programming Language :: Python :: 3.11',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
       include_package_data=True,
-      keywords=['greensms', 'sms', 'sms-api', 'call-for-code', 'rest', 'api', 'viber'],
+      keywords=['greensms', 'sms', 'sms-api', 'call-for-code',
+                'rest', 'api', 'viber', 'whatsapp'],
       long_description=long_description,
       long_description_content_type='text/markdown'
       )

@@ -4,24 +4,30 @@ from tests.utils import random_phone
 import time
 
 
-class TestHlrMethods(unittest.TestCase):
+class TestVkMethods(unittest.TestCase):
 
     def test_send(self):
-        response = client.hlr.send(to=random_phone(79150000000, 79150999999))
+        dict_params = {
+            'to': random_phone(),
+            'txt': 'Test Message Hampshire',
+            'from': 'PyTest',
+            'cascade': 'sms'
+        }
+        response = client.viber.send(**dict_params)
         self.assertIn('request_id', response)
         self.__class__.request_id = response.request_id
 
     def test_mandatory_to(self):
         try:
-            client.hlr.send()
+            client.viber.send()
         except Exception as e:
             self.assertEqual(e.error, 'Validation Error')
 
     def test_status(self):
         time.sleep(2)
         request_id = self.__class__.request_id
-        response = client.hlr.status(
-            id=request_id, to=random_phone())
+        response = client.viber.status(
+            id=request_id, extended=True)
         self.assertIn('status', response)
 
 

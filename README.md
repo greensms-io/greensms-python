@@ -57,7 +57,7 @@ print(response.balance)
 
 ## Compatibility
 
-`greensms-python` is compatible with Python 2.7 and Python 3.4 onwards until the latest Python 3.9 version
+`greensms-python` is compatible with Python 2.7 and Python 3.4 onwards until the latest Python 3.11 version
 
 ## Methods
 
