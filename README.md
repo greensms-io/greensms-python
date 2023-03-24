@@ -1,9 +1,9 @@
 # greensms-python
+
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/greensms-ru/greensms-python)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/greensms)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/greensms-ru/greensms-python/python-package.yml?branch=main)
 ![Coveralls github](https://img.shields.io/coveralls/github/greensms-ru/greensms-python)
-
 
 ## Documentation
 
@@ -12,13 +12,13 @@ The documentation for the GREENSMS API can be found [here][apidocs].
 ## Installation
 
 ```bash
-pipenv install greeensms
+pipenv install greensms
 ```
 
 or
 
 ```bash
-pip install greeensms
+pip install greensms
 ```
 
 ## Sample Usage
@@ -29,7 +29,7 @@ Check out these [code examples](examples) to get up and running quickly.
 
 from greensms.client import GreenSMS
 
-# Register at my.greeensms.ru first
+# Register at my.greensms.ru first
 client = GreenSMS(user='test', password='test')
 
 response = client.sms.send(to='71231234567', txt='Message to deliver')
@@ -47,7 +47,7 @@ print(response.request_id) # or print(response['request_id'])
 
 from greensms.client import GreenSMS
 
-# Register at my.greeensms.ru first
+# Register at my.greensms.ru first
 client = GreenSMS(token='yourtoken')
 
 response = client.account.balance()
